@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			body {
+				background-color: #ffffff;
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+		<script src="http://threejsplaygnd.brangerbriz.net/js/three.min.js"></script>
+		<script src="http://threejsplaygnd.brangerbriz.net/js/Detector.js"></script>
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var camera, scene, renderer;
+			var geometry, material, mesh;
+
+			function setup() {
+
+				var W = window.innerWidth, H = window.innerHeight;
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize( W, H );
+				document.body.appendChild( renderer.domElement );
+
+				camera = new THREE.PerspectiveCamera( 50, W/H, 1, 10000 );
+				camera.position.z = 500;
+
+				scene = new THREE.Scene();
+
+				geometry = new THREE.Geometry();
+				for ( i = 0; i < 2250; i ++ ) {
+					var vertex = new THREE.Vector3();
+					vertex.x = 1000 * Math.random() - 500;
+					vertex.y = 1000 * Math.random() - 500;
+					vertex.z = 1000 * Math.random() - 500;
+					geometry.vertices.push( vertex );
+				}
+				material = new THREE.ParticleBasicMaterial( { size: 5, sizeAttenuation: false, transparent: true } );
+				material.color.setHex( 0xe3e1e1 );
+				particles = new THREE.ParticleSystem( geometry, material );
+				particles.sortParticles = true;
+				scene.add( particles );
+
+
+				// paste your code from the geometryGUI here
+				geometry = new THREE.CircleGeometry(273.44, 54, 400, 6.283185307179586);
+				material = new THREE.MeshBasicMaterial({shading: THREE.FlatShading, color: 0xe3e1e1, wireframe: true, wireframeLinewidth: 1});
+				mesh = new THREE.Mesh(geometry, material);
+				scene.add(mesh);
+
+
+			}
+
+			function draw() {
+
+				requestAnimationFrame( draw );
+
+				mesh.rotation.x = Date.now() * 0.0005;
+				mesh.rotation.y = Date.now() * 0.0002;
+				mesh.rotation.z = Date.now() * 0.001;
+
+				mesh.position.y = Math.sin( Date.now() * 0.0002 ) * 30;
+				mesh.position.x = Math.sin( Date.now() * 0.001 ) * 50;
+				mesh.rotation.z = Date.now() * 0.0005;
+
+				particles.rotation.y = Date.now() * 0.00005;
+
+				renderer.render( scene, camera );
+
+			}
+
+			setup();
+			draw();
+
+		</script>
+
+	</body>
+</html>
