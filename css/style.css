@@ -12,6 +12,11 @@ body {
 
 }
 
+h1 {
+  text-align: left;
+  color: #634f45;
+
+}
 
 #animation {
   border: none;

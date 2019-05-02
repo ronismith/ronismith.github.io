@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Lora', serif;
-  background-color: #d6cfbc;
+  background-color: #e8e5e5;
   margin: 30;
 
 }
@@ -28,13 +28,13 @@ body {
 
 .buttons {
   float: left;
-  font-size: 20pt;
+  font-size: 18pt;
   list-style-type: none;
   background: #5e5353;
   background-color: #898584;
-  padding: 20px;
+  padding: 10px;
   border-style: ridge;
-  margin: 10px
+  margin: 5px
 }
 
 .buttons a {
